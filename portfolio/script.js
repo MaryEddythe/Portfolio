@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', function() {
   initTypewriter();
   initScrollAnimations();
   initContactForm();
+  initTechStack(); // Added tech stack initialization
 });
 
 // Custom cursor
@@ -40,7 +41,7 @@ function initCursor() {
   });
   
   // Scale cursor on clickable elements
-  const clickables = document.querySelectorAll('a, button, input, textarea, .project-card');
+  const clickables = document.querySelectorAll('a, button, input, textarea, .project-card, .tech-card, .tech-category-btn');
   clickables.forEach(element => {
     element.addEventListener('mouseenter', () => {
       cursorOuter.style.transform = `translate(${cursorOuter.offsetLeft}px, ${cursorOuter.offsetTop}px) scale(1.5)`;
@@ -150,7 +151,8 @@ function initTypewriter() {
 
 // Scroll animations
 function initScrollAnimations() {
-  const animatedElements = document.querySelectorAll('.about-content, .stats, .project-grid, .contact-content');
+  // Add tech-grid to the animated elements
+  const animatedElements = document.querySelectorAll('.about-content, .tech-grid, .project-grid, .contact-content');
   
   animatedElements.forEach(element => {
     element.classList.add('fade-in');
@@ -198,4 +200,61 @@ function initContactForm() {
       form.reset();
     });
   }
+}
+
+// Tech Stack Section Functionality
+function initTechStack() {
+  const techCards = document.querySelectorAll('.tech-card');
+  const categoryButtons = document.querySelectorAll('.tech-category-btn');
+  
+  if (!techCards.length || !categoryButtons.length) return;
+  
+  // Show all cards initially with animation
+  setTimeout(() => {
+    techCards.forEach((card, index) => {
+      setTimeout(() => {
+        card.classList.add('show');
+      }, index * 100);
+    });
+  }, 500);
+  
+  // Category filtering
+  categoryButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      // Update active button
+      categoryButtons.forEach(btn => btn.classList.remove('active'));
+      button.classList.add('active');
+      
+      const category = button.getAttribute('data-category');
+      
+      // Filter cards
+      techCards.forEach(card => {
+        card.classList.remove('show');
+        
+        setTimeout(() => {
+          if (category === 'all' || card.getAttribute('data-category').includes(category)) {
+            card.style.display = 'block';
+            setTimeout(() => {
+              card.classList.add('show');
+            }, 50);
+          } else {
+            card.style.display = 'none';
+          }
+        }, 300);
+      });
+    });
+  });
+  
+  // Animate skill bars when they come into view
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('show');
+      }
+    });
+  }, { threshold: 0.2 });
+  
+  techCards.forEach(card => {
+    observer.observe(card);
+  });
 }
