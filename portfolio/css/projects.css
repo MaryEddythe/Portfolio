@@ -9,27 +9,37 @@
 
 .project-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
-  margin-bottom: 4rem;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));  /* Reduced from 300px */
+  gap: 1.5rem;  /* Reduced from 2rem */
+  margin-bottom: 3rem;
 }
 
 .project-card {
   background: var(--bg-tertiary);
   border: 1px solid var(--border-color);
   border-radius: 1rem;
+  padding: 2rem;
+  transition: all 0.3s ease;
+  max-width: 400px;
+  margin: 0 auto;
+  position: relative;
   overflow: hidden;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .project-card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
 }
 
 .project-image {
-  aspect-ratio: 16/9;
+  position: relative;
+  height: auto;  /* Remove fixed aspect ratio */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-tertiary);
   overflow: hidden;
+  max-height: 240px;  /* Add maximum height for images/videos */
 }
 
 .project-image img {
@@ -43,24 +53,78 @@
   transform: scale(1.1);
 }
 
+.project-image video {
+  width: 100%;
+  height: auto;  /* Let height adjust automatically */
+  max-height: 600px;  /* Optional: set a maximum height */
+  object-fit: contain;
+  background-color: var(--bg-tertiary);
+  transition: transform 0.5s ease;
+}
+
+.project-card:hover .project-image video {
+  transform: scale(1.05);  /* Reduced from 1.15 for subtler zoom */
+}
+
+.btn-project {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -50px;
+  margin: 0 2rem;
+  padding: 0.75rem;
+  background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+  color: white;
+  border: none;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  text-align: center;
+  text-decoration: none;
+  opacity: 0;
+  transition: all 0.3s ease;
+}
+
+.project-card:hover .btn-project {
+  bottom: 2rem;
+  opacity: 1;
+}
+
 .project-content {
-  padding: 2rem;
-  background: var(--bg-tertiary);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding-bottom: 4rem;  /* Add padding at bottom to accommodate hover button */
 }
 
 .project-category {
   display: inline-block;
-  background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
-  color: white;
   padding: 0.5rem 1rem;
   border-radius: 2rem;
   font-size: 0.75rem;
   font-weight: 600;
+  color: white;
   margin-bottom: 1rem;
 }
 
+/* Category color variations */
+.project-card[data-category="Web Development"] .project-category {
+  background: linear-gradient(135deg, #3B82F6, #60A5FA);
+}
+
+.project-card[data-category="Mobile Development"] .project-category {
+  background: linear-gradient(135deg, #10B981, #34D399);
+}
+
+.project-card[data-category="AI/ML"] .project-category {
+  background: linear-gradient(135deg, #F97316, #FB923C);
+}
+
+.project-card[data-category="Desktop Application"] .project-category {
+  background: linear-gradient(135deg, #9333EA, #A855F7);
+}
+
 .project-title {
-  font-size: 1.5rem;
+  font-size: 1.25rem;  /* Reduced from 1.5rem */
   margin-bottom: 1rem;
   color: var(--text-primary);
 }
@@ -69,6 +133,7 @@
   color: var(--text-secondary);
   margin-bottom: 1.5rem;
   line-height: 1.6;
+  font-size: 0.9rem;  /* Added smaller font size */
 }
 
 .project-tech {
@@ -90,21 +155,6 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-}
-
-.btn-project {
-  padding: 0.75rem 1.5rem;
-  background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
-  color: white;
-  border: none;
-  border-radius: 0.5rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: transform 0.3s ease;
-}
-
-.btn-project:hover {
-  transform: translateY(-2px);
 }
 
 .project-links {
