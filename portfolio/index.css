@@ -554,7 +554,8 @@ body:hover .cursor-inner {
 
 /* Projects Section */
 .projects {
-  padding: 5rem 0 8rem;
+  padding: 8rem 0;  /* Increased top padding to account for fixed header */
+  min-height: 100vh;
   background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
   position: relative;
   overflow: hidden;
@@ -659,6 +660,8 @@ body:hover .cursor-inner {
   flex-direction: column;
   position: relative;
   z-index: 2;
+  background: var(--bg-tertiary);
+  border-radius: 0 0 1rem 1rem;
 }
 
 .project-category {
@@ -1008,7 +1011,8 @@ body:hover .cursor-inner {
 
 /* Projects Section */
 .projects {
-  padding: 5rem 0 8rem;
+  padding: 8rem 0;  /* Increased top padding to account for fixed header */
+  min-height: 100vh;
   background-color: var(--bg-primary);
 }
 

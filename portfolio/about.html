@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Me</title>
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="about.css">
+</head>
+<body>
+
+<!-- Include Header -->
+<div id="header-placeholder"></div>
+
+<section id="about" class="about">
+  <div class="container">
+    <h2 class="section-title">About <span class="highlight">Me</span></h2>
+    <div class="about-content">
+      <div class="about-image">
+        <div class="image-container">
+          <img src="https://via.placeholder.com/400" alt="Mary Eddythe">
+        </div>
+        <div class="experience-badge">
+          <span class="text">GPA<br>1.18</span>
+        </div>
+      </div>
+      <div class="about-text">
+        <h3>Full Stack Developer & UI/UX Designer</h3>
+        <p>I'm a dedicated student pursuing a Bachelor of Science in Information Technology, Major in Software Technologies at West Visayas State University. With a strong academic performance reflected in my GPA of 1.18, I combine theoretical knowledge with practical experience in full-stack development, UI/UX design, and data analysis.</p>
+        <p>My passion lies in creating seamless, user-centered digital experiences through innovative solutions. I specialize in crafting responsive frontends and robust backends that align with both user needs and business goals.</p>
+        <div class="about-info">
+          <div class="info-item">
+            <h4>Education</h4>
+            <p>BS Information Technology<br>West Visayas State University</p>
+          </div>
+          <div class="info-item">
+            <h4>Email</h4>
+            <p>sornito.maryeddythe@gmail.com</p>
+          </div>
+          <div class="info-item">
+            <h4>Location</h4>
+            <p>Iloilo, Philippines</p>
+          </div>
+          <div class="info-item">
+            <h4>Availability</h4>
+            <p>Freelance / Full-time</p>
+          </div>
+        </div>
+        <button class="btn btn-primary">Download CV</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Include Footer -->
+<div id="footer-placeholder"></div>
+
+<script>
+    // Load header and footer
+    fetch('layouts/header.html')
+        .then(response => response.text())
+        .then(data => document.getElementById('header-placeholder').innerHTML = data);
+
+    fetch('layouts/footer.html')
+        .then(response => response.text())
+        .then(data => document.getElementById('footer-placeholder').innerHTML = data);
+</script>
+
+</body>
+</html>

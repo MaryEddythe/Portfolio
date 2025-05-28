@@ -1,6 +1,9 @@
 document.addEventListener("DOMContentLoaded", () => {
   // Set current year in footer
-  document.getElementById("currentYear").textContent = new Date().getFullYear()
+  const currentYearElement = document.getElementById("currentYear")
+  if (currentYearElement) {
+    currentYearElement.textContent = new Date().getFullYear()
+  }
 
   // Initialize animations
   initCursor()
@@ -9,7 +12,8 @@ document.addEventListener("DOMContentLoaded", () => {
   initTypewriter()
   initScrollAnimations()
   initContactForm()
-  initTechStack() // Added tech stack initialization
+  initTechStack()
+  initAboutAnimations() // Add about section animations
 })
 
 // Custom cursor
@@ -17,10 +21,10 @@ function initCursor() {
   const cursorOuter = document.querySelector(".cursor-outer")
   const cursorInner = document.querySelector(".cursor-inner")
 
+  if (!cursorOuter || !cursorInner) return
+
   document.addEventListener("mousemove", (e) => {
-    // Add smooth animation with requestAnimationFrame for better performance
     requestAnimationFrame(() => {
-      // Position the outer cursor with spring effect
       const outerX = e.clientX
       const outerY = e.clientY
 
@@ -29,7 +33,6 @@ function initCursor() {
     })
   })
 
-  // Hide cursor when leaving the window
   document.addEventListener("mouseout", () => {
     cursorOuter.style.opacity = "0"
     cursorInner.style.opacity = "0"
@@ -40,9 +43,8 @@ function initCursor() {
     cursorInner.style.opacity = "1"
   })
 
-  // Scale cursor on clickable elements
   const clickables = document.querySelectorAll(
-    "a, button, input, textarea, .project-card, .tech-card, .tech-category-btn",
+    "a, button, input, textarea, .project-card, .tech-card, .tech-category-btn, .info-item, .stat-item",
   )
   clickables.forEach((element) => {
     element.addEventListener("mouseenter", () => {
@@ -62,6 +64,7 @@ function initCursor() {
 // Navbar scroll effect
 function initNavbar() {
   const navbar = document.querySelector(".navbar")
+  if (!navbar) return
 
   window.addEventListener("scroll", () => {
     if (window.scrollY > 50) {
@@ -75,40 +78,36 @@ function initNavbar() {
 // Hero background blobs
 function initHeroBackground() {
   const heroBg = document.querySelector(".hero-bg")
+  if (!heroBg) return
 
-  // Create blobs
   for (let i = 0; i < 20; i++) {
     const blob = document.createElement("div")
     blob.classList.add("blob")
 
-    // Random size
     const size = Math.random() * 300 + 50
     blob.style.width = `${size}px`
     blob.style.height = `${size}px`
-
-    // Random position
     blob.style.left = `${Math.random() * 100}%`
     blob.style.top = `${Math.random() * 100}%`
-
-    // Random opacity
     blob.style.opacity = 0.1 + Math.random() * 0.2
 
     heroBg.appendChild(blob)
   }
 
-  // Animate blobs on mousemove
   const hero = document.querySelector(".hero")
-  hero.addEventListener("mousemove", (e) => {
-    const { left, top, width, height } = hero.getBoundingClientRect()
-    const x = (e.clientX - left) / width - 0.5
-    const y = (e.clientY - top) / height - 0.5
+  if (hero) {
+    hero.addEventListener("mousemove", (e) => {
+      const { left, top, width, height } = hero.getBoundingClientRect()
+      const x = (e.clientX - left) / width - 0.5
+      const y = (e.clientY - top) / height - 0.5
 
-    const blobs = document.querySelectorAll(".blob")
-    blobs.forEach((blob, index) => {
-      const factor = (index % 5) + 1
-      blob.style.transform = `translate(${x * 20 * factor}px, ${y * 20 * factor}px)`
+      const blobs = document.querySelectorAll(".blob")
+      blobs.forEach((blob, index) => {
+        const factor = (index % 5) + 1
+        blob.style.transform = `translate(${x * 20 * factor}px, ${y * 20 * factor}px)`
+      })
     })
-  })
+  }
 }
 
 // Typewriter effect
@@ -137,23 +136,43 @@ function initTypewriter() {
 
     if (!isDeleting && charIndex === currentText.length) {
       isDeleting = true
-      typingSpeed = 1000 // Pause at the end
+      typingSpeed = 1000
     } else if (isDeleting && charIndex === 0) {
       isDeleting = false
       textIndex = (textIndex + 1) % texts.length
-      typingSpeed = 500 // Pause before typing next
+      typingSpeed = 500
     }
 
     setTimeout(type, typingSpeed)
   }
 
-  // Start the typewriter effect
   setTimeout(type, 1000)
+}
+
+// About section animations
+function initAboutAnimations() {
+  const aboutContent = document.querySelector(".about-content")
+  const infoItems = document.querySelectorAll(".info-item")
+  const statItems = document.querySelectorAll(".stat-item")
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("animate")
+        }
+      })
+    },
+    { threshold: 0.1 },
+  )
+
+  if (aboutContent) observer.observe(aboutContent)
+  infoItems.forEach((item) => observer.observe(item))
+  statItems.forEach((item) => observer.observe(item))
 }
 
 // Scroll animations
 function initScrollAnimations() {
-  // Add tech-grid to the animated elements
   const animatedElements = document.querySelectorAll(".about-content, .tech-grid, .project-grid, .contact-content")
 
   animatedElements.forEach((element) => {
@@ -171,15 +190,9 @@ function initScrollAnimations() {
     })
   }
 
-  // Check elements on load
   checkScroll()
-
-  // Check elements on scroll
   window.addEventListener("scroll", checkScroll)
 
-  // Add this to the initScrollAnimations function, after the existing code:
-
-  // Animate project cards
   const projectCards = document.querySelectorAll(".project-card")
   const projectObserver = new IntersectionObserver(
     (entries) => {
@@ -205,13 +218,11 @@ function initContactForm() {
     form.addEventListener("submit", (e) => {
       e.preventDefault()
 
-      // Get form values
-      const name = document.getElementById("name").value
-      const email = document.getElementById("email").value
-      const subject = document.getElementById("subject").value
-      const message = document.getElementById("message").value
+      const name = document.getElementById("name")?.value
+      const email = document.getElementById("email")?.value
+      const subject = document.getElementById("subject")?.value
+      const message = document.getElementById("message")?.value
 
-      // Simple validation
       if (!name || !email || !message) {
         alert("Please fill in all required fields.")
         return
@@ -230,7 +241,6 @@ function initTechStack() {
 
   if (!techCards.length || !categoryButtons.length) return
 
-  // Show all cards initially with animation
   setTimeout(() => {
     techCards.forEach((card, index) => {
       setTimeout(() => {
@@ -239,16 +249,13 @@ function initTechStack() {
     })
   }, 500)
 
-  // Category filtering
   categoryButtons.forEach((button) => {
     button.addEventListener("click", () => {
-      // Update active button
       categoryButtons.forEach((btn) => btn.classList.remove("active"))
       button.classList.add("active")
 
       const category = button.getAttribute("data-category")
 
-      // Filter cards
       techCards.forEach((card) => {
         card.classList.remove("show")
 
@@ -266,7 +273,6 @@ function initTechStack() {
     })
   })
 
-  // Animate skill bars when they come into view
   const observer = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
