@@ -101,7 +101,7 @@
 }
 
 .project-card:hover .btn-project {
-  bottom: 2rem;
+  bottom: 0.5rem;
   opacity: 1;
 }
 

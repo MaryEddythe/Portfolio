@@ -3,31 +3,56 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Me</title>
+    <title>About Me - Mary Eddythe Sornito</title>
     <link rel="stylesheet" href="index.css">
     <link rel="stylesheet" href="about.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
-<!-- Include Header -->
-<div id="header-placeholder"></div>
+   <!-- Custom Cursor -->
+    <div class="cursor-outer"></div>
+    <div class="cursor-inner"></div>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="container">
+            <div class="logo">Sornito - Portfolio</div>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html" class="active">About</a></li>
+                    <li><a href="projects.html">Projects</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
 
 <section id="about" class="about">
   <div class="container">
-    <h2 class="section-title">About <span class="highlight">Me</span></h2>
     <div class="about-content">
       <div class="about-image">
-        <div class="image-container">
-          <img src="../assets/Safe (3).png" alt="Mary Eddythe" width="500" height="500">
-        </div>
-        <div class="experience-badge">
-          <span class="text">GPA<br>1.18</span>
+        <div class="floating-element"></div>
+        <div class="floating-element"></div>
+        <div class="floating-element"></div>
+        <div class="image-wrapper">
+          <div class="image-container">
+            <div class="image-inner">
+              <img src="../assets/Safe (3).png" alt="Mary Eddythe" width="500" height="500">
+            </div>
+          </div>
+          <div class="experience-badge">
+            <span class="text">GPA<br>1.18</span>
+          </div>
         </div>
       </div>
+      
       <div class="about-text">
         <h3>Full Stack Developer & UI/UX Designer</h3>
         <p>I'm a dedicated student pursuing a Bachelor of Science in Information Technology, Major in Software Technologies at West Visayas State University. With a strong academic performance reflected in my GPA of 1.18, I combine theoretical knowledge with practical experience in full-stack development, UI/UX design, and data analysis.</p>
         <p>My passion lies in creating seamless, user-centered digital experiences through innovative solutions. I specialize in crafting responsive frontends and robust backends that align with both user needs and business goals.</p>
+        
         <div class="about-info">
           <div class="info-item">
             <h4>Education</h4>
@@ -46,25 +71,35 @@
             <p>Freelance / Full-time</p>
           </div>
         </div>
+        
         <button class="btn btn-primary">Download CV</button>
+      </div>
+    </div>
+    
+    <div class="stats">
+      <div class="stat-item">
+        <h3>20+</h3>
+        <p>Projects Completed</p>
+      </div>
+      <div class="stat-item">
+        <h3>1.18</h3>
+        <p>Current GPA</p>
+      </div>
+      <div class="stat-item">
+        <h3>100%</h3>
+        <p>Dedication Level</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- Include Footer -->
-<div id="footer-placeholder"></div>
+<!-- Footer -->
+<footer class="footer">
+  <div class="container">
+    <p>© <span id="currentYear"></span> Mary Eddythe Sornito. All rights reserved.</p>
+  </div>
+</footer>
 
-<script>
-    // Load header and footer
-    fetch('layouts/header.html')
-        .then(response => response.text())
-        .then(data => document.getElementById('header-placeholder').innerHTML = data);
-
-    fetch('layouts/footer.html')
-        .then(response => response.text())
-        .then(data => document.getElementById('footer-placeholder').innerHTML = data);
-</script>
-<script src="js/script.js"></script>
+<script src="script.js"></script>
 </body>
 </html>
