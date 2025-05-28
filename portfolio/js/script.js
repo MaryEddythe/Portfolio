@@ -9,4 +9,10 @@ document.addEventListener('DOMContentLoaded', function() {
             link.classList.add('active');
         }
     });
+
+    // Add "animate" class to project cards to trigger fade-in animation and make them visible
+    const projectCards = document.querySelectorAll('.project-card');
+    projectCards.forEach(card => {
+        card.classList.add('animate');
+    });
 });
