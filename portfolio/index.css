@@ -347,6 +347,7 @@ p {
 .btn-primary {
   background: linear-gradient(to right, var(--accent-primary), var(--accent-secondary));
   color: white;
+  text-decoration: none; /* Remove underline from links styled as buttons */
 }
 
 .btn-primary:hover {

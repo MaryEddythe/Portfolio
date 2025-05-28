@@ -52,7 +52,7 @@ function initCursor() {
   })
 
   const clickables = document.querySelectorAll(
-    "a, button, input, textarea, .project-card, .tech-card, .tech-category-btn, .info-item, .stat-item, .experience-badge",
+    "a, button, input, textarea, .project-card, .tech-card, .tech-category-btn, .info-item, .stat-item, .experience-badge, .timeline-item, .skill-tag",
   )
   clickables.forEach((element) => {
     element.addEventListener("mouseenter", () => {
@@ -162,6 +162,10 @@ function initAboutAnimations() {
   const aboutContent = document.querySelector(".about-content")
   const infoItems = document.querySelectorAll(".info-item")
   const statItems = document.querySelectorAll(".stat-item")
+  const experienceSection = document.querySelector(".experience-section")
+  const timelineItems = document.querySelectorAll(".timeline-item")
+  const skillsSection = document.querySelector(".skills-section")
+  const skillCategories = document.querySelectorAll(".skill-category")
 
   const observer = new IntersectionObserver(
     (entries) => {
@@ -175,13 +179,20 @@ function initAboutAnimations() {
   )
 
   if (aboutContent) observer.observe(aboutContent)
+  if (experienceSection) observer.observe(experienceSection)
+  if (skillsSection) observer.observe(skillsSection)
+  
   infoItems.forEach((item) => observer.observe(item))
   statItems.forEach((item) => observer.observe(item))
+  timelineItems.forEach((item) => observer.observe(item))
+  skillCategories.forEach((item) => observer.observe(item))
 }
 
 // Scroll animations
 function initScrollAnimations() {
-  const animatedElements = document.querySelectorAll(".about-content, .tech-grid, .project-grid, .contact-content")
+  const animatedElements = document.querySelectorAll(
+    ".about-content, .tech-grid, .project-grid, .contact-content, .experience-section, .skills-section"
+  )
 
   animatedElements.forEach((element) => {
     element.classList.add("fade-in")
