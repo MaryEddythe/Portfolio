@@ -1,4 +1,20 @@
 /* Projects Section Styles */
+/* Navbar Styles */
+.navbar {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    transition: all 0.3s ease;
+}
+
+.navbar.scrolled {
+    background-color: rgba(5, 10, 28, 0.9);
+    backdrop-filter: blur(8px);
+    padding: 1rem 0;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
 .projects {
   padding-top: 120px;
   min-height: 100vh;
@@ -198,7 +214,11 @@
   color: white;
   transform: translateY(-2px);
 }
-
+.navbar.scrolled {
+  background-color: rgba(5, 10, 28, 0.9);
+  backdrop-filter: blur(8px);
+  padding: 1rem 0;
+}
 /* Responsive Adjustments */
 @media (max-width: 768px) {
   .project-grid {

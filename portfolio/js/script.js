@@ -15,4 +15,14 @@ document.addEventListener('DOMContentLoaded', function() {
     projectCards.forEach(card => {
         card.classList.add('animate');
     });
+
+    // Navbar scroll background effect
+    const navbar = document.querySelector('.navbar');
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) {
+            navbar.classList.add('scrolled');
+        } else {
+            navbar.classList.remove('scrolled');
+        }
+    });
 });
