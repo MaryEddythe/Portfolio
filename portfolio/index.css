@@ -229,6 +229,7 @@
   position: relative;
   overflow: hidden;
   margin-top: 3rem;
+  text-decoration: none; /* Remove underline */
 }
 
 .btn-view-all:hover {
@@ -362,6 +363,7 @@ p {
   background: transparent;
   border: 1px solid rgba(255, 255, 255, 0.2);
   color: white;
+  text-decoration: none; /* Remove underline */
 }
 
 .btn-outline:hover {
@@ -1540,7 +1542,8 @@ body:hover .cursor-inner {
   overflow: hidden;
 }
 
-.btn-view-all::before {
+/* Removed sliding rectangle effect on hover for View All Projects button */
+/* .btn-view-all::before {
   content: "";
   position: absolute;
   top: 0;
@@ -1554,7 +1557,7 @@ body:hover .cursor-inner {
 
 .btn-view-all:hover::before {
   left: 0;
-}
+} */
 
 .btn-view-all:hover {
   color: white;
