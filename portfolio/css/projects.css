@@ -90,7 +90,7 @@
     right: 0;
     bottom: -50px;
     margin: 0 1rem; /* Reduced from 2rem for smaller screens */
-    padding: 0.75rem 1rem;
+    padding: 0.5rem 0.8rem; /* Adjusted padding for a smaller button */
     background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
     color: white;
     border: none;
@@ -100,11 +100,11 @@
     text-decoration: none;
     opacity: 0;
     transition: all 0.3s ease;
-    font-size: 0.9rem; /* Added for better scaling on mobile */
+    font-size: 0.8rem; /* Reduced font size for a smaller button */
 }
 
 .project-card:hover .btn-project {
-    bottom: 1rem; /* Increased from 0.1rem for better visibility */
+    bottom: 0.4rem; /* Increased from 0.1rem for better visibility */
     opacity: 1;
 }
 
@@ -125,6 +125,20 @@
   margin-bottom: 1rem;
 }
 
+/* Styling for the new project status badge */
+.project-status {
+  display: inline-block;
+  padding: 0.3rem 0.8rem;
+  border-radius: 2rem;
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: white;
+  margin-left: 0.5rem; /* Space it out from the category */
+  vertical-align: middle; /* Align with category text */
+}
+.project-status.ongoing {
+  background: linear-gradient(135deg, #f59e0b, #facc15); /* Amber/Yellow gradient for ongoing */
+}
 /* Category color variations */
 .project-card[data-category="Web Development"] .project-category {
   background: linear-gradient(135deg, #3B82F6, #60A5FA);
