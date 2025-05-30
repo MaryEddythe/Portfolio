@@ -18,39 +18,19 @@ document.addEventListener("DOMContentLoaded", () => {
   // Burger menu toggle functionality
   const burger = document.querySelector('.burger')
   const navLinks = document.querySelector('.nav-links')
-  const navItems = navLinks.querySelectorAll('li')
 
   if (burger && navLinks) {
-    // Add animation delay to nav links
-    navItems.forEach((item, index) => {
-      item.style.setProperty('--i', index)
-    })
-
     burger.addEventListener('click', () => {
-      // Toggle navigation
       navLinks.classList.toggle('nav-active')
       burger.classList.toggle('toggle')
-      document.body.style.overflow = navLinks.classList.contains('nav-active') ? 'hidden' : 'auto'
-
-      // Animate links
-      navItems.forEach((item) => {
-        if (item.style.animation) {
-          item.style.animation = ''
-        } else {
-          item.style.animation = `slideIn 0.5s ease forwards ${item.style.getPropertyValue('--i') * 0.2}s`
-        }
-      })
     })
 
-    // Close sidebar when clicking a nav link
-    navLinks.querySelectorAll('a').forEach(link => {
+    // Close sidebar when clicking on a nav link
+    const navLinkItems = navLinks.querySelectorAll('a')
+    navLinkItems.forEach(link => {
       link.addEventListener('click', () => {
         navLinks.classList.remove('nav-active')
         burger.classList.remove('toggle')
-        document.body.style.overflow = 'auto'
-        navItems.forEach(item => {
-          item.style.animation = ''
-        })
       })
     })
 
@@ -60,22 +40,15 @@ document.addEventListener("DOMContentLoaded", () => {
       closeBtn.addEventListener('click', () => {
         navLinks.classList.remove('nav-active')
         burger.classList.remove('toggle')
-        document.body.style.overflow = 'auto'
-        navItems.forEach(item => {
-          item.style.animation = ''
-        })
       })
     }
 
-    // Close sidebar when clicking outside
+    // Optional: Close sidebar when clicking outside nav-links and burger
     document.addEventListener('click', (event) => {
-      if (!navLinks.contains(event.target) && !burger.contains(event.target)) {
+      const target = event.target
+      if (!navLinks.contains(target) && !burger.contains(target)) {
         navLinks.classList.remove('nav-active')
         burger.classList.remove('toggle')
-        document.body.style.overflow = 'auto'
-        navItems.forEach(item => {
-          item.style.animation = ''
-        })
       }
     })
   }

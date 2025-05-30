@@ -23,14 +23,43 @@ document.addEventListener("DOMContentLoaded", () => {
   initTechStack()
   initAboutAnimations() // Add about section animations
 
-  // Burger menu toggle
+  // Burger menu and sidebar functionality
   const burger = document.querySelector('.burger');
   const navLinks = document.querySelector('.nav-links');
+  const closeButton = document.querySelector('.close-sidebar button');
 
   if (burger && navLinks) {
+    // Toggle menu on burger click
     burger.addEventListener('click', () => {
       navLinks.classList.toggle('nav-active');
       burger.classList.toggle('toggle');
+    });
+
+    // Close menu when clicking nav links
+    const navLinkItems = navLinks.querySelectorAll('a');
+    navLinkItems.forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('nav-active');
+        burger.classList.remove('toggle');
+      });
+    });
+
+    // Close menu when clicking close button
+    if (closeButton) {
+      closeButton.addEventListener('click', () => {
+        navLinks.classList.remove('nav-active');
+        burger.classList.remove('toggle');
+      });
+    }
+
+    // Close menu when clicking outside
+    document.addEventListener('click', (event) => {
+      if (!navLinks.contains(event.target) && 
+          !burger.contains(event.target) && 
+          navLinks.classList.contains('nav-active')) {
+        navLinks.classList.remove('nav-active');
+        burger.classList.remove('toggle');
+      }
     });
   }
 })
