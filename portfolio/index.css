@@ -26,6 +26,90 @@
   background-color: transparent;
 }
 
+/* Burger menu styles */
+.burger {
+  display: none;
+  cursor: pointer;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 25px;
+  height: 20px;
+  z-index: 1001;
+}
+
+.burger span {
+  display: block;
+  height: 3px;
+  width: 100%;
+  background-color: var(--text-primary);
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+/* Responsive styles for nav and burger */
+@media (max-width: 768px) {
+  .nav-links {
+    position: fixed;
+    right: 0;
+    height: 100vh;
+    top: 0;
+    background-color: var(--bg-primary);
+    flex-direction: column;
+    align-items: center;
+    width: 60%;
+    transform: translateX(100%);
+    transition: transform 0.3s ease-in-out;
+    padding-top: 5rem;
+    gap: 2rem;
+    z-index: 1000;
+  }
+
+  .nav-links.nav-active {
+    transform: translateX(0);
+  }
+
+  .burger {
+    display: flex;
+  }
+
+  /* Close button for sidebar */
+  .nav-links .close-sidebar {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+  }
+
+  .nav-links .close-sidebar button {
+    background: transparent;
+    border: none;
+    color: var(--text-primary);
+    font-size: 2rem;
+    cursor: pointer;
+    padding: 0;
+    line-height: 1;
+  }
+}
+
+/* Burger animation when active */
+.burger.toggle span:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+
+.burger.toggle span:nth-child(2) {
+  opacity: 0;
+}
+
+.burger.toggle span:nth-child(3) {
+  transform: rotate(-45deg) translate(5px, -5px);
+}
+
+/* Adjust nav-links a for mobile */
+@media (max-width: 768px) {
+  .nav-links a {
+    font-size: 1.2rem;
+  }
+}
+
 .navbar.scrolled {
   background-color: rgba(5, 10, 28, 0.95) !important;
   backdrop-filter: blur(20px);

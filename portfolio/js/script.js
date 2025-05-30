@@ -22,6 +22,17 @@ document.addEventListener("DOMContentLoaded", () => {
   initContactForm()
   initTechStack()
   initAboutAnimations() // Add about section animations
+
+  // Burger menu toggle
+  const burger = document.querySelector('.burger');
+  const navLinks = document.querySelector('.nav-links');
+
+  if (burger && navLinks) {
+    burger.addEventListener('click', () => {
+      navLinks.classList.toggle('nav-active');
+      burger.classList.toggle('toggle');
+    });
+  }
 })
 
 // Custom cursor

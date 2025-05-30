@@ -14,6 +14,44 @@ document.addEventListener("DOMContentLoaded", () => {
   initContactForm()
   initTechStack()
   initAboutAnimations() // Add about section animations
+
+  // Burger menu toggle functionality
+  const burger = document.querySelector('.burger')
+  const navLinks = document.querySelector('.nav-links')
+
+  if (burger && navLinks) {
+    burger.addEventListener('click', () => {
+      navLinks.classList.toggle('nav-active')
+      burger.classList.toggle('toggle')
+    })
+
+    // Close sidebar when clicking on a nav link
+    const navLinkItems = navLinks.querySelectorAll('a')
+    navLinkItems.forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('nav-active')
+        burger.classList.remove('toggle')
+      })
+    })
+
+    // Close sidebar when clicking the close button
+    const closeBtn = navLinks.querySelector('.close-sidebar button')
+    if (closeBtn) {
+      closeBtn.addEventListener('click', () => {
+        navLinks.classList.remove('nav-active')
+        burger.classList.remove('toggle')
+      })
+    }
+
+    // Optional: Close sidebar when clicking outside nav-links and burger
+    document.addEventListener('click', (event) => {
+      const target = event.target
+      if (!navLinks.contains(target) && !burger.contains(target)) {
+        navLinks.classList.remove('nav-active')
+        burger.classList.remove('toggle')
+      }
+    })
+  }
 })
 
 // Custom cursor
@@ -289,31 +327,3 @@ function initTechStack() {
   })
 }
 
-document.addEventListener('DOMContentLoaded', function() {
-    // Update current year in footer
-    document.getElementById('currentYear').textContent = new Date().getFullYear();
-
-    // Add active class to current nav link
-    const currentPage = window.location.pathname.split('/').pop() || 'index.html';
-    document.querySelectorAll('.nav-links a').forEach(link => {
-        if (link.getAttribute('href') === currentPage) {
-            link.classList.add('active');
-        }
-    });
-
-    // Add "animate" class to project cards to trigger fade-in animation and make them visible
-    const projectCards = document.querySelectorAll('.project-card');
-    projectCards.forEach(card => {
-        card.classList.add('animate');
-    });
-
-    // Add navbar scroll detection
-    window.addEventListener('scroll', function() {
-        const navbar = document.querySelector('.navbar');
-        if (window.scrollY > 50) {
-            navbar.classList.add('scrolled');
-        } else {
-            navbar.classList.remove('scrolled');
-        }
-    });
-});
