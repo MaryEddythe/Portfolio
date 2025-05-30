@@ -28,11 +28,28 @@ document.addEventListener("DOMContentLoaded", () => {
   const navLinks = document.querySelector('.nav-links');
   const closeButton = document.querySelector('.close-sidebar button');
 
+  function updateCloseButtonVisibility() {
+    if (!closeButton) return;
+    // Check if burger menu is visible (mobile view)
+    const burgerVisible = window.getComputedStyle(burger).display !== 'none';
+    // Also check window width to handle edge cases
+    const isMobileWidth = window.innerWidth <= 768;
+    if (burgerVisible && navLinks.classList.contains('nav-active') && isMobileWidth) {
+      closeButton.style.display = 'flex';
+    } else {
+      closeButton.style.display = 'none';
+    }
+  }
+
   if (burger && navLinks) {
+    // Initially hide close button
+    updateCloseButtonVisibility();
+
     // Toggle menu on burger click
     burger.addEventListener('click', () => {
       navLinks.classList.toggle('nav-active');
       burger.classList.toggle('toggle');
+      updateCloseButtonVisibility();
     });
 
     // Close menu when clicking nav links
@@ -41,6 +58,7 @@ document.addEventListener("DOMContentLoaded", () => {
       link.addEventListener('click', () => {
         navLinks.classList.remove('nav-active');
         burger.classList.remove('toggle');
+        updateCloseButtonVisibility();
       });
     });
 
@@ -49,6 +67,7 @@ document.addEventListener("DOMContentLoaded", () => {
       closeButton.addEventListener('click', () => {
         navLinks.classList.remove('nav-active');
         burger.classList.remove('toggle');
+        updateCloseButtonVisibility();
       });
     }
 
@@ -59,6 +78,7 @@ document.addEventListener("DOMContentLoaded", () => {
           navLinks.classList.contains('nav-active')) {
         navLinks.classList.remove('nav-active');
         burger.classList.remove('toggle');
+        updateCloseButtonVisibility();
       }
     });
   }
